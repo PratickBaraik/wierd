@@ -4,21 +4,21 @@ import { useAudio } from "../../../context/AudioContext";
 /*
 Glassmorphism Audio Player
 
-Improvements
-- real glass UI layer
-- soft border highlights
-- floating depth shadows
-- reflective lighting
-- GPU friendly animation
+Features
+- glass UI card
+- symmetric audio waveform
+- GPU optimized animation
+- cinematic hover interaction
 */
 
 export default function AudioPlayer() {
   const { playing, toggleAudio } = useAudio();
 
-  /* symmetrical animation delays */
+  /* perfectly symmetric animation delays
+     center bar leads the motion */
   const delays = [
-    0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.3, 0.25, 0.2, 0.15, 0.1, 0.05,
-    0,
+    0.35, 0.3, 0.25, 0.2, 0.15, 0.1, 0.05, 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3,
+    0.35,
   ];
 
   return (
@@ -44,7 +44,7 @@ export default function AudioPlayer() {
       hover:shadow-[0_15px_35px_rgba(0,0,0,0.4)]
       "
     >
-      {/* GLASS LIGHT REFLECTION */}
+      {/* glass reflection layer */}
       <div
         className="
         pointer-events-none
@@ -54,14 +54,15 @@ export default function AudioPlayer() {
         from-white/20
         to-transparent
         opacity-40
-      "
+        "
       />
 
-      {/* MUSIC ICON */}
+      {/* music icon */}
       <div
         className="
         relative z-10
         w-[54px] h-[54px]
+
         flex items-center justify-center
         rounded-full
         overflow-hidden
@@ -82,7 +83,7 @@ export default function AudioPlayer() {
         />
       </div>
 
-      {/* WAVEFORM */}
+      {/* waveform */}
       <div className="relative z-10 flex flex-1 items-center justify-center gap-[6px] min-w-0">
         {Array.from({ length: 15 }).map((_, i) => (
           <span
@@ -97,11 +98,11 @@ export default function AudioPlayer() {
               sm:w-[2px] sm:h-[14px]
 
               rounded-full
-
               bg-white/90
               dark:bg-white/70
 
               origin-center
+              will-change-transform
 
               ${playing ? "animate-wave" : ""}
             `}
@@ -109,7 +110,7 @@ export default function AudioPlayer() {
         ))}
       </div>
 
-      {/* PLAY BUTTON */}
+      {/* play / pause button */}
       <button
         onClick={toggleAudio}
         aria-label={playing ? "Pause music" : "Play music"}

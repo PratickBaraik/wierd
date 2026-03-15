@@ -22,17 +22,19 @@ export default {
         sans: ["Inter", "system-ui", "sans-serif"],
       },
 
-      /* Audio waveform animation */
+      /* Advanced audio waveform animation */
       keyframes: {
         wave: {
-          "0%": { transform: "scaleY(0.4)" },
-          "50%": { transform: "scaleY(1.3)" },
-          "100%": { transform: "scaleY(0.4)" },
+          "0%,100%": { transform: "scaleY(0.35)" },
+          "20%": { transform: "scaleY(1.1)" },
+          "40%": { transform: "scaleY(1.8)" },
+          "60%": { transform: "scaleY(1.3)" },
+          "80%": { transform: "scaleY(0.7)" },
         },
       },
 
       animation: {
-        wave: "wave 0.9s ease-in-out infinite",
+        wave: "wave 1.05s cubic-bezier(0.4,0,0.2,1) infinite",
       },
     },
   },
