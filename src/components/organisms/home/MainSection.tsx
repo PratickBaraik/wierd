@@ -1,4 +1,4 @@
-import AudioPlayer from "./Audioplayer";
+import AudioPlayer from "./AudioPlayer";
 import bgImage from "./assets/main_canvas.jpg";
 
 const Main_Canvas = () => {
