@@ -1,6 +1,6 @@
 import NavBar from "../../components/molecule/Navbar";
 import Footer from "../../components/molecule/Footer";
-import ProjectsMain from "../../components/organisms/projects/ProjectsMain";
+import GearListMain from "../../components/organisms/gearlist/GearListMain";
 
 type NavItem = {
   label: string;
@@ -19,7 +19,7 @@ const GearList = () => {
   return (
     <>
       <NavBar brand="PK Portfolio" links={navLinks} />
-      <ProjectsMain />
+      <GearListMain />
       <Footer />
     </>
   );
