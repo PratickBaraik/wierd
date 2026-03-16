@@ -4,7 +4,8 @@ import forms from "@tailwindcss/forms";
 import typography from "@tailwindcss/typography";
 
 export default {
-  darkMode: "class",
+  // Automatically follow system dark/light theme
+  darkMode: "media",
 
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 
@@ -18,6 +19,7 @@ export default {
     },
 
     extend: {
+      /* Typography */
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
       },
@@ -25,16 +27,15 @@ export default {
       /* Advanced audio waveform animation */
       keyframes: {
         wave: {
-          "0%,100%": { transform: "scaleY(0.35)" },
-          "20%": { transform: "scaleY(1.1)" },
-          "40%": { transform: "scaleY(1.8)" },
-          "60%": { transform: "scaleY(1.3)" },
-          "80%": { transform: "scaleY(0.7)" },
+          "0%,100%": { transform: "scaleY(0.3)" },
+          "25%": { transform: "scaleY(1)" },
+          "50%": { transform: "scaleY(1.8)" },
+          "75%": { transform: "scaleY(1.2)" },
         },
       },
 
       animation: {
-        wave: "wave 1.05s cubic-bezier(0.4,0,0.2,1) infinite",
+        wave: "wave 1s ease-in-out infinite",
       },
     },
   },

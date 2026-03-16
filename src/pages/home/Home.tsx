@@ -2,15 +2,18 @@ import MainSection from "../../components/organisms/home/MainSection";
 import IntroSection from "../../components/organisms/home/IntroSection";
 import WorkSection from "../../components/organisms/home/WorkSection";
 import ContactSection from "../../components/organisms/home/ContactSection";
+import NavBar from "../../components/molecule/Navbar";
+import ScrollTop from "../../components/molecule/ScrollTop";
+import Footer from "../../components/molecule/Footer";
 
 /**
  * Navigation item type definition
  * Ensures type-safe navigation configuration
  */
-// type NavItem = {
-//   label: string;
-//   href: string;
-// };
+type NavItem = {
+  label: string;
+  href: string;
+};
 
 /**
  * HomePage
@@ -25,13 +28,13 @@ const HomePage: React.FC = () => {
    * Navigation configuration
    * These paths correspond to React Router routes
    */
-  //   const navLinks: NavItem[] = [
-  //     { label: "Home", href: "/" },
-  //     { label: "Works", href: "/works" },
-  //     { label: "Gearlist", href: "/gearlist" },
-  //     { label: "About", href: "/about" },
-  //     { label: "Contact", href: "/contact" },
-  //   ];
+  const navLinks: NavItem[] = [
+    { label: "Home", href: "/" },
+    { label: "Works", href: "/works" },
+    { label: "Gearlist", href: "/gearlist" },
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" },
+  ];
 
   /**
    * Scroll-to-top button visibility state
@@ -41,7 +44,7 @@ const HomePage: React.FC = () => {
   return (
     <>
       {/* Navigation */}
-      {/* <Navbar brand="PK Portfolio" links={navLinks} /> */}
+      <NavBar brand="PK Portfolio" links={navLinks} />
 
       {/* Main landing canvas */}
       <MainSection />
@@ -55,11 +58,11 @@ const HomePage: React.FC = () => {
       {/* Contact section */}
       <ContactSection />
 
-      {/* Scroll to top button */}
-      {/* <ScrollToTop showAfter={600} /> */}
-
       {/* Footer */}
-      {/* <Footer /> */}
+      <Footer />
+
+      {/* Scroll to top button */}
+      <ScrollTop showAfter={600} />
     </>
   );
 };

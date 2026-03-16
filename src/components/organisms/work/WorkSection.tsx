@@ -22,39 +22,134 @@ const WorkSection = () => {
   ];
 
   return (
-    <section className="w-full">
+    <section className="w-full py-16 transition-colors duration-300">
       {/* Heading */}
-      <h1 className="mt-12 text-center text-[clamp(1.8rem,3vw+0.5rem,4rem)] font-semibold">
+      <h1
+        className="
+  text-center
+  font-semibold
+  leading-tight
+  tracking-tight
+  text-[clamp(2rem,3vw+0.5rem,3.8rem)]
+  text-neutral-700
+  dark:text-neutral-100
+  transition-colors duration-300
+  "
+      >
         Body of Work
       </h1>
 
       {/* Description */}
-      <p className="mt-4 px-4 text-center text-[clamp(0.9rem,1.2vw+0.3rem,1.3rem)] max-w-5xl mx-auto">
+      <p
+        className="
+        mt-4
+        px-6
+        text-center
+        max-w-4xl
+        mx-auto
+        text-[clamp(0.95rem,1.2vw+0.3rem,1.2rem)]
+        text-neutral-600
+        dark:text-neutral-400
+        "
+      >
         Every photograph is more than an image—it is a moment preserved beyond
         time. Through composition, light, and storytelling, each frame becomes a
-        visual narrative that captures emotion and atmosphere.
+        visual narrative capturing emotion and atmosphere.
       </p>
 
-      {/* Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 p-[clamp(2rem,5vw,4rem)]">
+      {/* Work Grid */}
+      <div
+        className="
+        mt-14
+        grid
+        grid-cols-1
+        sm:grid-cols-2
+        lg:grid-cols-3
+        gap-8
+        px-[clamp(1.2rem,5vw,4rem)]
+        "
+      >
         {works.map((work, index) => (
           <div
             key={index}
-            className="group relative overflow-hidden rounded-2xl aspect-[3/4] cursor-pointer"
+            className="
+            group
+            relative
+            overflow-hidden
+            rounded-2xl
+            aspect-[3/4]
+            cursor-pointer
+            "
           >
             {/* Image */}
             <img
               src={work.img}
               alt={work.alt}
-              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+              className="
+              w-full
+              h-full
+              object-cover
+              transition-transform
+              duration-700
+              ease-out
+              group-hover:scale-110
+              "
             />
 
-            {/* Cinematic dark gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition duration-500" />
+            {/* Adaptive Overlay */}
+            <div
+              className="
+              absolute
+              inset-0
+              bg-gradient-to-t
+              from-black/70
+              via-black/30
+              to-transparent
+              opacity-80
+              transition-opacity
+              duration-500
+              group-hover:opacity-100
+              "
+            />
 
-            {/* Title reveal */}
-            <div className="absolute bottom-6 left-0 right-0 flex justify-center translate-y-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-              <h2 className="text-white text-2xl font-semibold tracking-wide">
+            {/* Title */}
+            <div
+              className="
+              absolute
+              bottom-0
+              left-0
+              right-0
+              flex
+              justify-center
+              pb-8
+
+              translate-y-10
+              opacity-0
+
+              transition-all
+              duration-500
+              ease-out
+
+              group-hover:translate-y-0
+              group-hover:opacity-100
+
+              max-sm:translate-y-0
+              max-sm:opacity-100
+              "
+            >
+              <h2
+                className="
+                text-white
+                text-2xl
+                font-semibold
+                tracking-wide
+                backdrop-blur-sm
+                bg-black/40
+                px-6
+                py-2
+                rounded-full
+                "
+              >
                 {work.title}
               </h2>
             </div>
