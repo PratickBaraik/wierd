@@ -6,16 +6,6 @@ import ig from "./social/social.png";
 import yt from "./social/youtube.png";
 import li from "./social/linkedin.png";
 
-/**
- * Footer Component
- * Tailwind CSS version
- *
- * Improvements applied:
- * - Same container system as Navbar (max-w-7xl + px-6)
- * - Consistent horizontal alignment across the site
- * - Responsive behavior preserved
- */
-
 const Footer = () => {
   /**
    * Reusable navigation link style
