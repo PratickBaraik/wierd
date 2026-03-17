@@ -22,13 +22,13 @@ const WorkSection = () => {
       title: "Cinematography",
       img: CineWork,
       alt: "Prakashit doing cinematography work",
-      link: "/cinematography",
+      link: "/cine",
     },
     {
       title: "Photography",
       img: PhotoWork,
       alt: "Prakashit doing photography work",
-      link: "/gallery",
+      link: "/photo",
     },
     {
       title: "Drone Footage",
@@ -67,6 +67,8 @@ const WorkSection = () => {
           sm:grid-cols-2
           lg:grid-cols-3
           gap-8
+          mb-8
+          py-8
           "
         >
           {works.map((work) => (

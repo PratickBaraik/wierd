@@ -11,7 +11,7 @@ const Section: React.FC<SectionProps> = ({ title, images, sectionIndex }) => {
   return (
     <div className="space-y-6">
       {/* TITLE */}
-      <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-gray-900 dark:text-white">
+      <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-gray-900 dark:text-white text-center">
         {title}
       </h2>
 

@@ -11,7 +11,7 @@ type NavItem = {
 };
 
 /**
- * Works Page
+ * Project Page
  * Displays portfolio work gallery
  */
 const Works: React.FC = () => {
@@ -32,7 +32,7 @@ const Works: React.FC = () => {
       {/* Navigation */}
       <Navbar brand="Prakashit Kujur" links={navLinks} />
 
-      {/* Work showcase section */}
+      {/* Project showcase section */}
       <GallerySection />
 
       {/* Footer */}
