@@ -39,8 +39,8 @@ const WorkSection = () => {
   ];
 
   return (
-    <section className="w-full py-16 transition-colors duration-300">
-      {/* Consistent Container */}
+    <section className="w-full py-16 bg-primary transition-colors duration-300">
+      {/* Container */}
       <div className="mx-auto max-w-7xl px-6">
         {/* Heading */}
         <h1
@@ -50,10 +50,8 @@ const WorkSection = () => {
           leading-tight
           tracking-tight
           text-[clamp(2rem,3vw+0.5rem,3.8rem)]
-          text-neutral-700
-          dark:text-neutral-100
-          transition-colors duration-300
-          "
+          text-primary
+        "
         >
           Body of Work
         </h1>
@@ -66,16 +64,15 @@ const WorkSection = () => {
           max-w-4xl
           mx-auto
           text-[clamp(0.95rem,1.2vw+0.3rem,1.2rem)]
-          text-neutral-600
-          dark:text-neutral-400
-          "
+          text-secondary
+        "
         >
           Every photograph is more than an image—it is a moment preserved beyond
           time. Through composition, light, and storytelling, each frame becomes
           a visual narrative capturing emotion and atmosphere.
         </p>
 
-        {/* Work Grid */}
+        {/* Grid */}
         <div
           className="
           mt-14
@@ -86,85 +83,87 @@ const WorkSection = () => {
           gap-8
           mb-8
           py-8
-          "
+        "
         >
           {works.map((work) => (
             <Link
               key={work.title}
               to={work.link}
               className="
-              group
-              relative
-              overflow-hidden
-              rounded-2xl
-              aspect-[3/4]
-              cursor-pointer
-              block
+                group
+                relative
+                isolate
+                overflow-hidden
+                rounded-3xl
+                aspect-3/4
+                block
+                shadow-soft
+                hover:shadow-medium
+                transition-shadow duration-300
               "
             >
-              {/* Image */}
+              {/* IMAGE */}
               <img
                 src={work.img}
                 alt={work.alt}
                 className="
-                w-full
-                h-full
-                object-cover
-                transition-transform
-                duration-700
-                ease-out
-                group-hover:scale-110
+                  w-full h-full
+                  object-cover
+                  transition-transform duration-700 ease-out
+                  min-[1300px]:group-hover:scale-110
                 "
               />
 
-              {/* Adaptive Overlay */}
+              {/* OVERLAY (token-based) */}
               <div
                 className="
-                absolute
-                inset-0
-                bg-gradient-to-t
-                from-black/70
-                via-black/30
-                to-transparent
-                opacity-80
-                transition-opacity
-                duration-500
-                group-hover:opacity-100
+                  absolute inset-0
+                  bg-overlay-strong
+                  z-10
+
+                  opacity-100
+                  min-[1300px]:opacity-0
+                  min-[1300px]:group-hover:opacity-100
+
+                  transition-opacity duration-500
                 "
               />
 
-              {/* Title */}
+              {/* TITLE */}
               <div
                 className="
-                absolute
-                bottom-0
-                left-0
-                right-0
-                flex
-                justify-center
-                pb-8
-                translate-y-10
-                opacity-0
-                transition-all
-                duration-500
-                ease-out
-                group-hover:translate-y-0
-                group-hover:opacity-100
-                max-sm:translate-y-0
-                max-sm:opacity-100
+                  absolute inset-0
+                  flex items-end justify-center
+                  pb-8
+                  z-20
+
+                  opacity-100
+                  translate-y-0
+
+                  min-[1300px]:opacity-0
+                  min-[1300px]:translate-y-6
+                  min-[1300px]:group-hover:opacity-100
+                  min-[1300px]:group-hover:translate-y-0
+
+                  transition-all duration-500 ease-out
                 "
               >
                 <h2
                   className="
-                  text-white
-                  text-2xl
-                  font-semibold
-                  tracking-wide
-                  backdrop-blur-sm
-                  bg-black/40
-                  px-6
-                  py-2
-                  rounded-full
+                    text-white
+                    text-2xl font-semibold
+                    tracking-wide
+
+                    bg-glass
+                    border border-glass
+                    backdrop-blur-md
+
+                    px-6 py-2
+                    rounded-full
+
+                    transform
+                    min-[1300px]:group-hover:scale-105
+                    transition-transform duration-300
                   "
                 >
                   {work.title}

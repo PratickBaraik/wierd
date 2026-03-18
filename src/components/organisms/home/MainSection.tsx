@@ -12,70 +12,84 @@ const Main_Canvas = () => {
 
       bg-cover bg-center bg-no-repeat
 
-      flex flex-col
-      items-center
-      justify-center
+      flex items-center justify-center
 
-      gap-[clamp(3rem,6vw,7rem)]
-
-      px-6
-      sm:px-10
-      md:px-14
-      lg:px-20
+      px-6 sm:px-10 md:px-14 lg:px-20
+      overflow-hidden
       "
     >
-      {/* GLASS OVERLAY */}
+      {/* ================================
+         OVERLAY (TOKEN CONTROLLED)
+      ================================ */}
+      <div className="absolute inset-0 bg-overlay-strong backdrop-blur-xs" />
+
+      {/* ================================
+         LIGHT FOCUS (SUBTLE DEPTH)
+      ================================ */}
       <div
         className="
-        absolute inset-0
-        bg-black/30
-        backdrop-blur-[2px]
+        absolute
+        w-125 h-125
 
-        dark:bg-black/40
+        bg-accent/20
+        blur-[140px]
+
+        top-[10%]
+        left-[50%]
+        -translate-x-1/2
         "
       />
 
-      {/* CONTENT */}
+      {/* ================================
+         CONTENT
+      ================================ */}
       <div
         className="
         relative z-10
+
+        w-full
+        max-w-350
+
         flex flex-col
         items-center
-        w-full
-        max-w-[1400px]
 
-        gap-[clamp(3rem,6vw,7rem)]
+        gap-[clamp(2.5rem,5vw,6rem)]
         "
       >
-        {/* TITLE */}
+        {/* ================================
+           TITLE (PRIMARY FOCUS)
+        ================================ */}
         <h1
           className="
-          text-white
-          font-sans
+          text-text-primary
+          font-semibold
           text-center
-          leading-[1.1]
 
-          text-[clamp(2rem,2vw+3rem,6rem)]
+          leading-[1.05]
+
+          text-[clamp(2.5rem,2vw+3rem,6rem)]
+          tracking-tight
           "
         >
           Prakashit Kujur
         </h1>
 
-        {/* OPTIONAL CENTER SPACE */}
-        <div className="w-full"></div>
+        {/* ================================
+           MID SPACE (CINEMATIC BREATHING)
+        ================================ */}
+        <div className="h-[clamp(2rem,6vw,5rem)]" />
 
-        {/* BOTTOM SECTION */}
+        {/* ================================
+           BOTTOM CONTENT
+        ================================ */}
         <div
           className="
           w-full
 
           flex
-          flex-col
-          md:flex-row
+          flex-col md:flex-row
 
-          items-start
-          md:items-end
-
+          items-center md:items-end
           justify-between
 
           gap-6 md:gap-10
@@ -83,40 +97,42 @@ const Main_Canvas = () => {
           px-[clamp(1rem,4vw,3rem)]
           "
         >
+          {/* DESCRIPTION */}
           <p
             className="
-            text-white/90
+            text-text-secondary
+            text-center md:text-left
+
             leading-[1.3]
 
-            text-[clamp(1.2rem,1.6vw+0.5rem,2.6rem)]
+            text-[clamp(1.2rem,1.6vw+0.5rem,2.2rem)]
 
             max-w-full
-            md:max-w-[70%]
+            md:max-w-[65%]
             "
           >
             Visual storyteller working across cinematography, photography, and
-            editing to craft natural, immersive story.
+            editing to craft natural, immersive stories.
           </p>
 
+          {/* CTA */}
           <button
             className="
             whitespace-nowrap
 
-            px-8
-            py-3
-
+            px-8 py-3
             rounded-xl
 
-            bg-white/10
-            text-white
+            bg-glass
+            text-text-primary
 
             backdrop-blur-md
-            border border-white/20
+            border border-border
 
             transition-all duration-300
 
-            hover:bg-white/20
             hover:scale-[1.05]
+            hover:shadow-medium
 
             active:scale-[0.95]
             "
@@ -125,7 +141,9 @@ const Main_Canvas = () => {
           </button>
         </div>
 
-        {/* AUDIO PLAYER */}
+        {/* ================================
+           AUDIO PLAYER
+        ================================ */}
         <div className="w-full flex justify-center md:justify-end">
           <AudioPlayer />
         </div>

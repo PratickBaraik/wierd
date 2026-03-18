@@ -12,8 +12,7 @@ const ImageCard: React.FC<ImageCardProps> = ({ src, alt }) => {
 
   /**
    * Intersection Observer:
-   * - Loads image only when near viewport
-   * - Reduces network congestion (important for 27 images)
+   * Lazy-load images only near viewport
    */
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -23,9 +22,7 @@ const ImageCard: React.FC<ImageCardProps> = ({ src, alt }) => {
           observer.disconnect();
         }
       },
-      {
-        rootMargin: "120px", // preload slightly before entering view
-      },
+      { rootMargin: "120px" },
     );
 
     if (containerRef.current) observer.observe(containerRef.current);
@@ -40,18 +37,25 @@ const ImageCard: React.FC<ImageCardProps> = ({ src, alt }) => {
         w-full
         aspect-square
         overflow-hidden
-        bg-gray-100
-        dark:bg-neutral-800
         relative
+        rounded-2xl
+
+        bg-surface
+        border border-border
+        shadow-soft
+        hover:shadow-medium
+
+        transition-all duration-300
       "
     >
-      {/* Skeleton Loader */}
+      {/* Skeleton */}
       <div
         className={`
           absolute inset-0
           transition-opacity duration-500
           ${isLoaded ? "opacity-0" : "opacity-100"}
-          bg-gray-200 dark:bg-neutral-700 animate-pulse
+          bg-secondary
+          animate-pulse
         `}
       />
 

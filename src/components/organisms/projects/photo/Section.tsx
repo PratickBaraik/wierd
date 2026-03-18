@@ -9,17 +9,33 @@ interface SectionProps {
 
 const Section: React.FC<SectionProps> = ({ title, images, sectionIndex }) => {
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* TITLE */}
-      <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-gray-900 dark:text-white text-center">
+      <h2
+        className="
+          text-2xl md:text-3xl
+          font-semibold
+          tracking-tight
+          text-primary
+          text-center
+        "
+      >
         {title}
       </h2>
 
       {/* GRID */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div
+        className="
+          grid
+          grid-cols-1
+          sm:grid-cols-2
+          md:grid-cols-3
+          gap-6
+        "
+      >
         {images.map((img, i) => (
           <ImageCard
-            key={img} // ✅ FIXED: stable key instead of index
+            key={img}
             src={img}
             alt={`section-${sectionIndex}-img-${i}`}
           />

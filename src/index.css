@@ -1,1 +1,169 @@
 @import "tailwindcss";
+
+/* ================================
+   THEME TOKENS (LIGHT DEFAULT)
+================================ */
+
+:root {
+  /* BACKGROUND */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-surface: #ffffff;
+
+  /* TEXT */
+  --text-primary: #0a0a0a;
+  --text-secondary: #525252;
+  --text-muted: #737373;
+
+  /* ACCENT */
+  --accent: #2563eb;
+  --accent-foreground: #ffffff;
+
+  /* BORDER */
+  --border: rgba(0, 0, 0, 0.08);
+
+  /* GLASS */
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(0, 0, 0, 0.08);
+
+  /* ================================
+     LOGO SYSTEM (IMPROVED)
+  ================================ */
+  --logo-bg: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(245, 245, 245, 0.85)
+  );
+
+  --logo-ring: rgba(0, 0, 0, 0.08);
+
+  /* ================================
+     CINEMATIC OVERLAY
+  ================================ */
+  --overlay-strong: linear-gradient(
+    to bottom,
+    rgba(15, 23, 42, 0.25),
+    rgba(30, 41, 59, 0.15),
+    rgba(15, 23, 42, 0.35)
+  );
+}
+
+/* ================================
+   DARK MODE
+================================ */
+
+.dark {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #171717;
+  --bg-surface: #111111;
+
+  --text-primary: #ffffff;
+  --text-secondary: #d4d4d4;
+  --text-muted: #a3a3a3;
+
+  --accent: #3b82f6;
+  --accent-foreground: #ffffff;
+
+  --border: rgba(255, 255, 255, 0.12);
+
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+
+  /* LOGO */
+  --logo-bg: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.02)
+  );
+
+  --logo-ring: rgba(255, 255, 255, 0.12);
+
+  /* OVERLAY */
+  --overlay-strong: linear-gradient(
+    to bottom,
+    rgba(2, 6, 23, 0.85),
+    rgba(0, 0, 0, 0.55),
+    rgba(2, 6, 23, 0.9)
+  );
+}
+
+/* ================================
+   BASE
+================================ */
+
+@layer base {
+  body {
+    @apply transition-colors duration-300;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+  }
+}
+
+/* ================================
+   UTILITIES
+================================ */
+
+@layer utilities {
+  .bg-primary {
+    background-color: var(--bg-primary);
+  }
+  .bg-secondary {
+    background-color: var(--bg-secondary);
+  }
+  .bg-surface {
+    background-color: var(--bg-surface);
+  }
+
+  .text-primary {
+    color: var(--text-primary);
+  }
+  .text-secondary {
+    color: var(--text-secondary);
+  }
+  .text-muted {
+    color: var(--text-muted);
+  }
+
+  .bg-accent {
+    background-color: var(--accent);
+  }
+  .text-accent {
+    color: var(--accent);
+  }
+  .text-accent-foreground {
+    color: var(--accent-foreground);
+  }
+
+  .border-border {
+    border-color: var(--border);
+  }
+
+  .bg-glass {
+    background-color: var(--glass-bg);
+  }
+  .border-glass {
+    border-color: var(--glass-border);
+  }
+
+  /* LOGO */
+  .bg-logo {
+    background: var(--logo-bg);
+  }
+
+  .logo-ring {
+    box-shadow:
+      0 0 0 2px var(--logo-ring),
+      0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .dark .logo-ring {
+    box-shadow:
+      0 0 0 2px var(--logo-ring),
+      0 10px 30px rgba(0, 0, 0, 0.6);
+  }
+
+  /* OVERLAY */
+  .bg-overlay-strong {
+    background: var(--overlay-strong);
+  }
+}

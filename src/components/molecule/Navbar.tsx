@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Menu, X } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "./logo.png";
 
@@ -13,78 +13,126 @@ interface NavbarProps {
   brand?: string;
 }
 
+/* ================================
+   BRAND COMPONENT (UPGRADED)
+================================ */
+const Brand = ({ brand }: { brand: string }) => (
+  <div className="flex items-center gap-3 group">
+    <div
+      className="
+      relative
+      rounded-full
+      p-0.75
+
+      bg-logo
+      logo-ring
+
+      transition-all duration-300
+      group-hover:scale-105
+      group-hover:shadow-medium
+      "
+    >
+      <img
+        src={logo}
+        alt="prakashit kujur brand logo"
+        className="
+        w-[clamp(42px,3vw,52px)]
+        aspect-square
+        rounded-full
+        object-cover
+        "
+      />
+    </div>
+
+    <span className="text-lg font-semibold tracking-tight text-text-primary">
+      {brand}
+    </span>
+  </div>
+);
+
 const Navbar: React.FC<NavbarProps> = ({ links, brand = "Brand" }) => {
   const [open, setOpen] = useState(false);
+  const [isDark, setIsDark] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      document.documentElement.classList.add("dark");
+      setIsDark(true);
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const root = document.documentElement;
+
+    if (root.classList.contains("dark")) {
+      root.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+      setIsDark(false);
+    } else {
+      root.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+      setIsDark(true);
+    }
+  };
 
   return (
     <>
       {/* NAVBAR */}
-
-      <nav className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur-lg transition-colors dark:border-neutral-800 dark:bg-neutral-900/80">
-        <div className="mx-auto flex h-[70px] max-w-7xl items-center justify-between px-6">
-          {/* BRAND SECTION */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <img
-              src={logo}
-              alt="prakashit kujur brand logo"
-              className="
-                w-[clamp(42px,3vw,52px)]
-                aspect-square
-                rounded-full
-                bg-white
-                p-[3px]
-                shadow-[0_0_0_2px_rgba(0,0,0,0.12),0_4px_10px_rgba(0,0,0,0.15)]
-                transition-transform duration-300
-                group-hover:scale-105
-              "
-            />
-
-            <span className="text-lg font-semibold tracking-tight text-gray-900 transition-colors dark:text-white">
-              {brand}
-            </span>
+      <nav className="sticky top-0 z-50 w-full border-b border-border bg-primary/80 backdrop-blur-lg">
+        <div className="mx-auto flex h-17.5 max-w-7xl items-center justify-between px-6">
+          <Link to="/">
+            <Brand brand={brand} />
           </Link>
 
-          {/* DESKTOP NAVIGATION */}
-          <ul className="hidden items-center gap-8 md:flex">
-            {links.map((link) => {
-              const active = location.pathname === link.href;
+          {/* DESKTOP */}
+          <div className="hidden md:flex items-center gap-10">
+            <ul className="flex items-center gap-8">
+              {links.map((link) => {
+                const active = location.pathname === link.href;
 
-              return (
-                <li key={link.href}>
-                  <Link
-                    to={link.href}
-                    className={`relative text-sm font-medium transition-colors
-                    ${
-                      active
-                        ? "text-black dark:text-white"
-                        : "text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white"
-                    }
-                    after:absolute after:-bottom-1 after:left-0
-                    after:h-[2px] after:w-0
-                    after:bg-black dark:after:bg-white
-                    after:transition-all hover:after:w-full`}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+                return (
+                  <li key={link.href}>
+                    <Link
+                      to={link.href}
+                      className={`relative text-sm font-medium transition-colors
+                      ${
+                        active
+                          ? "text-text-primary"
+                          : "text-text-secondary hover:text-accent"
+                      }
+                      after:absolute after:-bottom-1 after:left-0
+                      after:h-0.5 after:w-0
+                      after:bg-accent
+                      after:transition-all hover:after:w-full`}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
 
-          {/* MOBILE MENU BUTTON */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg bg-secondary text-text-primary transition hover:scale-105"
+            >
+              {isDark ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+          </div>
+
+          {/* MOBILE BUTTON */}
           <button
             onClick={() => setOpen(true)}
-            className="rounded-lg p-2 transition hover:bg-gray-100 dark:hover:bg-neutral-800 md:hidden"
-            aria-label="Open Menu"
+            className="rounded-lg p-2 transition hover:bg-secondary md:hidden"
           >
-            <Menu className="text-gray-800 dark:text-gray-200" size={26} />
+            <Menu className="text-text-primary" size={26} />
           </button>
         </div>
       </nav>
 
       {/* BACKDROP */}
-
       <div
         onClick={() => setOpen(false)}
         className={`fixed inset-0 z-40 bg-black/40 backdrop-blur-sm transition-opacity md:hidden
@@ -92,33 +140,21 @@ const Navbar: React.FC<NavbarProps> = ({ links, brand = "Brand" }) => {
       />
 
       {/* MOBILE DRAWER */}
-
       <aside
         className={`fixed right-0 top-0 z-50 h-screen w-[80%] max-w-sm
-        bg-white shadow-xl transition-transform duration-300
-        dark:bg-neutral-900 md:hidden
+        bg-primary shadow-xl transition-transform duration-300 md:hidden
         ${open ? "translate-x-0" : "translate-x-full"}`}
       >
-        <div className="flex items-center justify-between border-b border-gray-200 p-6 dark:border-neutral-800">
-          {/* Mobile Brand */}
-          <div className="flex items-center gap-3">
-            <img
-              src={logo}
-              alt="prakashit kujur brand logo"
-              className="w-10 rounded-full bg-white p-[2px]"
-            />
-
-            <span className="text-lg font-semibold text-gray-900 dark:text-white">
-              {brand}
-            </span>
-          </div>
+        <div className="flex items-center justify-between border-b border-border p-6">
+          <Link to="/" onClick={() => setOpen(false)}>
+            <Brand brand={brand} />
+          </Link>
 
           <button
             onClick={() => setOpen(false)}
-            className="rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-neutral-800"
-            aria-label="Close Menu"
+            className="rounded-lg p-2 hover:bg-secondary"
           >
-            <X className="text-gray-800 dark:text-gray-200" size={26} />
+            <X className="text-text-primary" size={26} />
           </button>
         </div>
 
@@ -134,8 +170,8 @@ const Navbar: React.FC<NavbarProps> = ({ links, brand = "Brand" }) => {
                   className={`text-lg font-medium transition-colors
                   ${
                     active
-                      ? "text-black dark:text-white"
-                      : "text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white"
+                      ? "text-text-primary"
+                      : "text-text-secondary hover:text-accent"
                   }`}
                 >
                   {link.label}
@@ -143,6 +179,14 @@ const Navbar: React.FC<NavbarProps> = ({ links, brand = "Brand" }) => {
               </li>
             );
           })}
+
+          <button
+            onClick={toggleTheme}
+            className="mt-6 flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-secondary text-text-primary"
+          >
+            {isDark ? <Sun size={18} /> : <Moon size={18} />}
+            {isDark ? "Light Mode" : "Dark Mode"}
+          </button>
         </ul>
       </aside>
     </>

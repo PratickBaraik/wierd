@@ -1,9 +1,9 @@
-import contact_bg from "./assets/contact_background.jpeg";
+import contactBg from "./assets/contactBackground.jpeg";
 
-const Contact_Section = () => {
+const ContactSection = () => {
   return (
     <section
-      style={{ backgroundImage: `url(${contact_bg})` }}
+      style={{ backgroundImage: `url(${contactBg})` }}
       className="
       relative
       min-h-screen
@@ -14,127 +14,114 @@ const Contact_Section = () => {
       bg-no-repeat
 
       flex
-      flex-col
-      justify-center
       items-center
+      justify-center
 
-      gap-[clamp(3rem,7vw,7rem)]
-
-      px-6
-      md:px-12
-      lg:px-20
-
+      px-6 md:px-12 lg:px-20
       overflow-hidden
       "
     >
-      {/* CINEMATIC VIGNETTE OVERLAY */}
-      <div
-        className="
-        absolute inset-0
+      {/* ================================
+         FULL OVERLAY (GLOBAL CONTRAST)
+      ================================ */}
+      <div className="absolute inset-0 bg-overlay-strong" />
 
-        bg-gradient-to-b
-        from-black/70
-        via-black/30
-        to-black/80
-
-        backdrop-blur-[3px]
-        "
-      />
-
-      {/* SOFT LIGHT GLOW */}
+      {/* ================================
+         LIGHT FOCUS
+      ================================ */}
       <div
         className="
         absolute
-        w-[500px]
-        h-[500px]
+        w-105 h-105
 
-        bg-amber-400/20
+        bg-accent/20
         blur-[120px]
 
         top-[20%]
         left-[50%]
-
         -translate-x-1/2
         "
       />
 
-      {/* CONTENT */}
+      {/* ================================
+         CONTENT (FULL CENTERED)
+      ================================ */}
       <div
         className="
         relative z-10
 
+        w-full
+        max-w-2xl
+
         flex flex-col
         items-center
+        justify-center
+
         text-center
 
-        gap-8
-
-        max-w-[900px]
+        gap-6
         "
       >
         {/* TITLE */}
         <h1
           className="
-          text-white
+          text-text-primary
           font-semibold
-          tracking-wide
 
-          text-[clamp(2.2rem,4vw+1rem,5rem)]
+          text-[clamp(2.5rem,4vw+1rem,4.2rem)]
 
-          drop-shadow-[0_10px_30px_rgba(0,0,0,0.7)]
+          leading-[1.1]
+          tracking-tight
           "
         >
-          Let's Create Something Cinematic
+          Let’s Create Something <span className="text-accent">Cinematic</span>
         </h1>
 
         {/* DESCRIPTION */}
         <p
           className="
-          text-white/90
+          text-text-secondary
 
-          text-[clamp(1rem,1vw+0.8rem,1.4rem)]
+          text-[clamp(1rem,1vw+0.8rem,1.25rem)]
 
           leading-relaxed
-          max-w-[720px]
+          max-w-162.5
           "
         >
           Whether it's a wedding, documentary, travel story, or brand visual,
-          every frame tells a story. Let's collaborate and craft visuals that
+          every frame tells a story. Let’s collaborate and craft visuals that
           feel authentic, emotional, and timeless.
         </p>
 
-        {/* GLASS BUTTON */}
+        {/* CTA */}
         <button
           className="
-          px-10
-          py-3
+          mt-4
 
+          px-8 py-3
           rounded-xl
 
-          text-white
           font-medium
           tracking-wide
 
-          bg-white/10
-          backdrop-blur-md
+          text-accent-foreground
+          bg-accent
 
-          border border-white/20
-
-          shadow-[0_10px_30px_rgba(0,0,0,0.5)]
+          shadow-medium
 
           transition-all duration-300
 
-          hover:bg-white/20
           hover:scale-[1.05]
+          hover:shadow-strong
 
-          active:scale-[0.95]
+          active:scale-[0.96]
           "
         >
-          Start a Project
+          Start Project
         </button>
       </div>
     </section>
   );
 };
 
-export default Contact_Section;
+export default ContactSection;

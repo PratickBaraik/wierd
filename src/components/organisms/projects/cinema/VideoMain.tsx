@@ -18,13 +18,24 @@ type Section = {
 
 /* ================================
    Reusable Video Card
-   (Atomic Component)
 ================================ */
 
 const VideoCard: React.FC<Video> = ({ title, url }) => {
   return (
     <div className="flex flex-col gap-4">
-      <div className="aspect-video overflow-hidden rounded-xl shadow-md">
+      {/* Video Frame */}
+      <div
+        className="
+          aspect-video
+          overflow-hidden
+          rounded-2xl
+          bg-surface
+          border border-border
+          shadow-soft
+          hover:shadow-medium
+          transition-shadow duration-300
+        "
+      >
         <iframe
           src={url}
           title={title}
@@ -33,7 +44,16 @@ const VideoCard: React.FC<Video> = ({ title, url }) => {
         />
       </div>
 
-      <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 text-center">
+      {/* Title */}
+      <h3
+        className="
+          text-lg
+          font-semibold
+          text-primary
+          text-center
+          tracking-tight
+        "
+      >
         {title}
       </h3>
     </div>
@@ -46,20 +66,23 @@ const VideoCard: React.FC<Video> = ({ title, url }) => {
 
 const VideoSection: React.FC<Section> = ({ title, videos }) => {
   return (
-    <section
-      className="
-        w-full
-        py-16
-      "
-    >
-      {/* Container (Consistent like Navbar) */}
+    <section className="w-full py-16">
+      {/* Container */}
       <div className="mx-auto max-w-7xl px-6">
         {/* Section Title */}
-        <h2 className="text-2xl font-bold mb-10 text-neutral-900 dark:text-neutral-100">
+        <h2
+          className="
+            text-2xl
+            font-bold
+            mb-10
+            text-primary
+            tracking-tight
+          "
+        >
           {title}
         </h2>
 
-        {/* Video Grid */}
+        {/* Grid */}
         <div className="grid gap-10 md:grid-cols-2">
           {videos.map((video) => (
             <VideoCard key={video.id} {...video} />
@@ -71,7 +94,7 @@ const VideoSection: React.FC<Section> = ({ title, videos }) => {
 };
 
 /* ================================
-   Main Component (4 Sections)
+   Main Component
 ================================ */
 
 const VideoSections: React.FC = () => {
@@ -143,7 +166,7 @@ const VideoSections: React.FC = () => {
   ];
 
   return (
-    <div className="bg-white dark:bg-neutral-950 transition-colors">
+    <div className="bg-primary transition-colors duration-300">
       {sections.map((section) => (
         <VideoSection key={section.id} {...section} />
       ))}
