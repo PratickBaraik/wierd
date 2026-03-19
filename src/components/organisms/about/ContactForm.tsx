@@ -61,8 +61,34 @@ const Contact: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    console.log("Form Submitted:", formData);
+    const { name, email, message } = formData;
 
+    // ✅ Basic validation safeguard
+    if (!name || !email || !message) {
+      alert("Please fill all fields.");
+      return;
+    }
+
+    // 🎯 Custom subject
+    const subject = "✨📩 New Connection from Portfolio Website 🚀";
+
+    // ✅ Clean body (no unwanted indentation)
+    const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+
+    // ⚠️ Replace with your actual email
+    const recipient = "baraikazad5@gmail.com";
+
+    const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(body)}`;
+
+    try {
+      window.location.href = mailtoLink;
+    } catch (error) {
+      alert("Unable to open mail client. Please try manually.");
+    }
+
+    // Reset form
     setFormData({
       name: "",
       email: "",
@@ -73,9 +99,8 @@ const Contact: React.FC = () => {
   return (
     <section className="w-full py-16 bg-primary transition-colors duration-300">
       <div className="mx-auto max-w-4xl px-6">
-        {/* ================= CONTENT ================= */}
         <div className="flex flex-col gap-10 items-center text-center">
-          {/* ================= TEXT ================= */}
+          {/* TEXT */}
           <div className="max-w-md">
             <h2 className="text-3xl md:text-4xl font-bold text-primary tracking-tight">
               Get in Touch
@@ -87,26 +112,26 @@ const Contact: React.FC = () => {
             </p>
           </div>
 
-          {/* ================= FORM ================= */}
+          {/* FORM */}
           <form
             onSubmit={handleSubmit}
             className="
               flex flex-col gap-6
               w-full max-w-md
-
               bg-surface
               border border-border
               rounded-3xl
               shadow-soft
-
               p-6 md:p-8
             "
           >
             {/* NAME */}
             <div className={fieldWrapper}>
-              <label className={labelClass}>Name</label>
-
+              <label htmlFor="name" className={labelClass}>
+                Name
+              </label>
               <input
+                id="name"
                 type="text"
                 name="name"
                 value={formData.name}
@@ -119,9 +144,11 @@ const Contact: React.FC = () => {
 
             {/* EMAIL */}
             <div className={fieldWrapper}>
-              <label className={labelClass}>Email</label>
-
+              <label htmlFor="email" className={labelClass}>
+                Email
+              </label>
               <input
+                id="email"
                 type="email"
                 name="email"
                 value={formData.email}
@@ -134,9 +161,11 @@ const Contact: React.FC = () => {
 
             {/* MESSAGE */}
             <div className={fieldWrapper}>
-              <label className={labelClass}>Message</label>
-
+              <label htmlFor="message" className={labelClass}>
+                Message
+              </label>
               <textarea
+                id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
@@ -151,21 +180,15 @@ const Contact: React.FC = () => {
             <button
               type="submit"
               className="
-                mt-4
-                mx-auto
-
+                mt-4 mx-auto
                 px-8 py-3
                 rounded-full
-
                 bg-accent
                 text-accent-foreground
-
                 font-semibold
                 tracking-wide
-
                 hover:opacity-90
                 active:scale-95
-
                 transition-all duration-200
               "
             >

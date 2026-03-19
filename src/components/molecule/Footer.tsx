@@ -14,11 +14,13 @@ const Footer = () => {
   const navLinkClass =
     "text-text-secondary text-sm md:text-base px-2 py-1 transition-all duration-300 hover:text-text-primary hover:-translate-y-[1px]";
 
+  // ✅ Cleaner wrapper (no heavy padding / border / glass)
   const socialWrapper =
-    "p-2.5 rounded-full transition-all duration-300 ease-out backdrop-blur-xs";
+    "p-1.5 rounded-full transition-all duration-300 ease-out";
 
+  // ✅ Refined icon behavior
   const socialIcon =
-    "w-5 md:w-6 opacity-80 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110";
+    "w-5 md:w-6 opacity-70 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110";
 
   return (
     <footer className="w-full bg-bg-secondary border-t border-border">
@@ -26,7 +28,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-12 items-center">
         {/* BRAND + NAV */}
         <div className="flex flex-col gap-8">
-          {/* BRAND (MATCHED WITH NAVBAR) */}
+          {/* BRAND */}
           <div className="flex items-center gap-3">
             <img
               src={logo}
@@ -90,7 +92,7 @@ const Footer = () => {
             className="group"
           >
             <div
-              className={`${socialWrapper} bg-glass border border-glass group-hover:bg-accent/10 group-hover:-translate-y-1 group-hover:shadow-soft`}
+              className={`${socialWrapper} hover:bg-accent/10 group-hover:-translate-y-1`}
             >
               <img src={fb} alt="Facebook" className={socialIcon} />
             </div>
@@ -104,7 +106,7 @@ const Footer = () => {
             className="group"
           >
             <div
-              className={`${socialWrapper} bg-glass border border-glass group-hover:bg-accent/10 group-hover:-translate-y-1 group-hover:shadow-soft`}
+              className={`${socialWrapper} hover:bg-accent/10 group-hover:-translate-y-1`}
             >
               <img src={ig} alt="Instagram" className={socialIcon} />
             </div>
@@ -118,7 +120,7 @@ const Footer = () => {
             className="group"
           >
             <div
-              className={`${socialWrapper} bg-glass border border-glass group-hover:bg-accent/10 group-hover:-translate-y-1 group-hover:shadow-soft`}
+              className={`${socialWrapper} hover:bg-accent/10 group-hover:-translate-y-1`}
             >
               <img src={yt} alt="YouTube" className={socialIcon} />
             </div>
@@ -132,7 +134,7 @@ const Footer = () => {
             className="group"
           >
             <div
-              className={`${socialWrapper} bg-glass border border-glass group-hover:bg-accent/10 group-hover:-translate-y-1 group-hover:shadow-soft`}
+              className={`${socialWrapper} hover:bg-accent/10 group-hover:-translate-y-1`}
             >
               <img src={li} alt="LinkedIn" className={socialIcon} />
             </div>
