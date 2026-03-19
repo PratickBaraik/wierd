@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import AudioPlayer from "./AudioPlayer";
+import { Link } from "react-router-dom";
 import bgImage from "./assets/mainCanvas.jpg";
 
 const MainCanvas = () => {
@@ -108,10 +109,11 @@ const MainCanvas = () => {
           </p>
 
           {/* CTA */}
-          <button
-            className="
+          <Link to="/about">
+            <button
+              className="
             whitespace-nowrap
-
+            
             px-8 py-3
             rounded-xl
 
@@ -126,12 +128,13 @@ const MainCanvas = () => {
             hover:scale-[1.05]
             hover:shadow-medium
             hover:bg-white/20
-
+            
             active:scale-[0.95]
             "
-          >
-            Know More
-          </button>
+            >
+              Know More
+            </button>
+          </Link>
         </div>
 
         {/* ================= AUDIO PLAYER ================= */}

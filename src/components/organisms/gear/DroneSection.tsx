@@ -33,71 +33,52 @@ const DroneSection: React.FC = () => {
   }, []);
 
   return (
-    <section className="w-full bg-bg-primary py-24 px-4 sm:px-8 md:px-12 lg:px-16">
+    <section className="w-full bg-bg-primary py-20 px-4 sm:px-8 md:px-12 lg:px-16">
       <div className="max-w-7xl mx-auto">
-        {/* ================= IMAGE WRAPPER ================= */}
-        <div className="relative w-full">
-          {/* ===== IMAGE ===== */}
-          <div
-            style={{ backgroundImage: `url(${drone.image})` }}
-            className={`
-              w-full
-              h-80 sm:h-105 md:h-130
+        {/* ================= IMAGE ================= */}
+        <div
+          style={{ backgroundImage: `url(${drone.image})` }}
+          className={`
+            w-full
+            h-80 sm:h-105 md:h-130
 
-              bg-cover
-              bg-center
-              bg-no-repeat
+            bg-cover
+            bg-center
+            bg-no-repeat
 
-              transition-all duration-1000 ease-out
+            transition-all duration-1000 ease-out
 
-              ${loaded ? "opacity-100 scale-100" : "opacity-0 scale-105"}
-            `}
-          />
+            ${loaded ? "opacity-100 scale-100" : "opacity-0 scale-105"}
+          `}
+        />
 
-          {/* ===== FLOATING PANEL ===== */}
+        {/* ================= CARD BELOW IMAGE ================= */}
+        <div className="mt-6 sm:mt-8 md:mt-10 flex justify-center">
           <div
             className="
-              absolute
-              left-1/2
-              bottom-0
-              -translate-x-1/2
-              translate-y-1/2
+              w-full sm:w-[90%] md:w-[75%] lg:w-[60%]
 
-              w-full sm:w-[85%] md:w-[70%] lg:w-[60%]
+              bg-bg-surface
+              text-text-primary
 
-              px-4 sm:px-6 md:px-8
-              z-10
+              px-6 md:px-10
+              py-6 md:py-8
+
+              border border-border
+              shadow-medium
             "
           >
-            <div
-              className="
-                w-full
+            {/* TITLE */}
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tight mb-3">
+              {drone.name}
+            </h2>
 
-                bg-bg-surface   /* better than bg-primary */
-                text-text-primary
-
-                px-6 md:px-10
-                py-6 md:py-7
-
-                border border-border   /* key for light mode */
-                shadow-medium          /* from your system */
-              "
-            >
-              {/* TITLE */}
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tight mb-3">
-                {drone.name}
-              </h2>
-
-              {/* DESCRIPTION */}
-              <p className="text-sm sm:text-base md:text-lg leading-relaxed text-text-secondary max-w-2xl">
-                {drone.description}
-              </p>
-            </div>
+            {/* DESCRIPTION */}
+            <p className="text-sm sm:text-base md:text-lg leading-relaxed text-text-secondary max-w-2xl">
+              {drone.description}
+            </p>
           </div>
         </div>
-
-        {/* ===== SPACING ===== */}
-        <div className="h-32 md:h-36" />
       </div>
     </section>
   );

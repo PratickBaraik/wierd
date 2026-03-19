@@ -1,6 +1,7 @@
 import NavBar from "../../../components/molecule/Navbar";
 import Footer from "../../../components/molecule/Footer";
 import DroneMain from "../../../components/organisms/projects/drone/DroneMain";
+import ScrollToTop from "../../../components/molecule/ScrollTop";
 
 type NavItem = {
   label: string;
@@ -21,6 +22,7 @@ const Project = () => {
       <NavBar brand="Prakashit Kujur" links={navLinks} />
       <DroneMain />
       <Footer />
+      <ScrollToTop showAfter={500} />
     </>
   );
 };

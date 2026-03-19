@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-// import { Links } from "react-router-dom";
+import { Link } from "react-router-dom";
 import contactBg from "./assets/contactBackground.jpeg";
 
 const ContactSection = () => {
@@ -105,12 +105,12 @@ const ContactSection = () => {
         </p>
 
         {/* CTA */}
-        <button
-          className="
+        <Link to="/contact">
+          <button
+            className="
           mt-4
 
           px-8 py-3
-          rounded-xl
 
           font-medium
           tracking-wide
@@ -124,12 +124,13 @@ const ContactSection = () => {
 
           hover:scale-[1.05]
           hover:shadow-strong
-
+          
           active:scale-[0.96]
           "
-        >
-          Start Project
-        </button>
+          >
+            Start Project
+          </button>
+        </Link>
       </div>
     </section>
   );

@@ -7,6 +7,7 @@ import LightSection from "../../components/organisms/gear/LightSection";
 import GearOverview from "../../components/organisms/gear/GearOverview";
 import LensSection from "../../components/organisms/gear/LenseSection";
 import DroneSection from "../../components/organisms/gear/DroneSection";
+import ScrollToTop from "../../components/molecule/ScrollTop";
 
 type NavItem = {
   label: string;
@@ -33,6 +34,7 @@ const GearList = () => {
       <LightSection />
       <GearOverview />
       <Footer />
+      <ScrollToTop showAfter={500} />
     </>
   );
 };

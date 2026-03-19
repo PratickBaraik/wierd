@@ -1,6 +1,7 @@
 import NavBar from "../../components/molecule/Navbar";
 import Footer from "../../components/molecule/Footer";
 import ContactMain from "../../components/organisms/contact/ContactMain";
+import ScrollToTop from "../../components/molecule/ScrollTop";
 
 type NavItem = {
   label: string;
@@ -21,6 +22,7 @@ const Contact = () => {
       <NavBar brand="Prakashit Kujur" links={navLinks} />
       <ContactMain />
       <Footer />
+      <ScrollToTop showAfter={500} />
     </>
   );
 };

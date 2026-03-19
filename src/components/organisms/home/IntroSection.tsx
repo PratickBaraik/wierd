@@ -1,5 +1,5 @@
 import { useState } from "react";
-import selfPortrait from "./assets/selfPortriat.jpg";
+import selfPortrait from "./assets/selfPortrait.jpg";
 
 const IntroSection = () => {
   const [loaded, setLoaded] = useState(false);

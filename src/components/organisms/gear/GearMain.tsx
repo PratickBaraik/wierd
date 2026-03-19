@@ -84,7 +84,8 @@ const GearMain: React.FC = () => {
           max-w-2xl
           "
         >
-          Crafted with precision. Built for storytelling.
+          Crafted with precision.{" "}
+          <span className="text-accent">Built for storytelling.</span>
         </p>
 
         {/* ===== Label (NO GLASS EFFECT) ===== */}

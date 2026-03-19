@@ -5,6 +5,7 @@ import Education from "../../components/organisms/about/Education";
 import Brands from "../../components/organisms/about/Organisation";
 import { Hobbies } from "../../components/organisms/about/hobbies";
 import ContactForm from "../../components/organisms/about/ContactForm";
+import ScrollToTop from "../../components/molecule/ScrollTop";
 
 type NavItem = {
   label: string;
@@ -29,6 +30,7 @@ const About = () => {
       <Hobbies />
       <ContactForm />
       <Footer />
+      <ScrollToTop showAfter={500W} />
     </>
   );
 };

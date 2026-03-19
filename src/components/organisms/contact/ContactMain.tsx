@@ -10,6 +10,7 @@ type FormData = {
 };
 
 /* ================================ */
+/* 🔧 FIX: Removed transition-all */
 const inputClass = `
   w-full px-4 py-3
   bg-primary
@@ -17,10 +18,12 @@ const inputClass = `
   rounded-xl
   text-primary
   placeholder:text-muted
+
   focus:outline-none
   focus:ring-2 focus:ring-accent
   focus:border-accent
-  transition-all duration-200
+
+  transition-colors duration-200
 `;
 
 const labelClass = `
@@ -38,10 +41,9 @@ const Contact: React.FC = () => {
     message: "",
   });
 
-  /* ================= IMAGE STATE ================= */
   const [imgLoaded, setImgLoaded] = useState(false);
 
-  /* Handle Input */
+  /* ================= HANDLERS ================= */
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -53,7 +55,6 @@ const Contact: React.FC = () => {
     }));
   };
 
-  /* Handle Submit */
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -82,17 +83,18 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section className="w-full py-16 bg-primary transition-colors duration-300">
+    <section className="w-full py-16 bg-primary">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 items-stretch">
           {/* ================= IMAGE ================= */}
-          <div className="w-full h-full overflow-hidden rounded-3xl">
+          {/* 🔧 FIX: Added relative (IMPORTANT) */}
+          <div className="relative w-full h-full overflow-hidden rounded-3xl">
             {/* Skeleton */}
             <div
               className={`
                 absolute inset-0
                 bg-secondary animate-pulse
-                transition-opacity duration-700
+                transition-opacity duration-500
                 ${imgLoaded ? "opacity-0" : "opacity-100"}
               `}
             />
@@ -110,13 +112,9 @@ const Contact: React.FC = () => {
                   w-full h-full object-cover
                   rounded-3xl shadow-medium
 
-                  transition-all duration-700 ease-in-out
+                  transition-[opacity,transform] duration-700 ease-out
 
-                  ${
-                    imgLoaded
-                      ? "opacity-100 scale-100 blur-0"
-                      : "opacity-0 scale-105 blur-sm"
-                  }
+                  ${imgLoaded ? "opacity-100 scale-100" : "opacity-0 scale-105"}
                 `}
               />
             </picture>
@@ -197,19 +195,18 @@ const Contact: React.FC = () => {
                 />
               </div>
 
+              {/* 🔧 FIX: Removed scale animation */}
               <button
                 type="submit"
                 className="
                   mt-4 self-center
                   px-8 py-3
-                  rounded-full
                   bg-accent
                   text-accent-foreground
                   font-semibold
                   tracking-wide
+                  transition-opacity duration-200
                   hover:opacity-90
-                  active:scale-95
-                  transition-all duration-200
                 "
               >
                 Send Message

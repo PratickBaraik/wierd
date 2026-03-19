@@ -1,6 +1,7 @@
 import WorkSection from "../../components/organisms/work/WorkSection";
 import Navbar from "../../components/molecule/Navbar";
 import Footer from "../../components/molecule/Footer";
+import ScrollToTop from "../../components/molecule/ScrollTop";
 
 /**
  * Navigation item structure
@@ -37,6 +38,7 @@ const Works: React.FC = () => {
 
       {/* Footer */}
       <Footer />
+      <ScrollToTop showAfter={500} />
     </>
   );
 };
