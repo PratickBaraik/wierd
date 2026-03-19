@@ -30,7 +30,7 @@ const About = () => {
       <Hobbies />
       <ContactForm />
       <Footer />
-      <ScrollToTop showAfter={500W} />
+      <ScrollToTop showAfter={500} />
     </>
   );
 };
