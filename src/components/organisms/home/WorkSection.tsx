@@ -1,11 +1,32 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import CineWork from "./assets/cinematics.jpg";
 import PhotoWork from "./assets/photo.jpg";
 import DroneWork from "./assets/drone.png";
 
-/* ================================
-   TYPES
-================================ */
+/* ================= IMAGE COMPONENT ================= */
+const WorkImage = ({ src, alt }: { src: string; alt: string }) => {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      onLoad={() => setLoaded(true)}
+      className={`
+        w-full h-full
+        object-cover
+
+        transition-all duration-1000 ease-out
+
+        ${loaded ? "opacity-100 scale-100" : "opacity-0 scale-105"}
+      `}
+    />
+  );
+};
+
+/* ================= TYPES ================= */
 type WorkItem = {
   title: string;
   img: string;
@@ -37,11 +58,8 @@ const WorkSection = () => {
 
   return (
     <section className="w-full py-16 bg-primary transition-colors duration-300">
-      {/* CONTAINER */}
       <div className="mx-auto max-w-7xl px-6">
-        {/* ================================
-           HEADING
-        ================================ */}
+        {/* ================= HEADING ================= */}
         <h1
           className="
           text-center
@@ -55,9 +73,7 @@ const WorkSection = () => {
           Body of Work
         </h1>
 
-        {/* ================================
-           GRID
-        ================================ */}
+        {/* ================= GRID ================= */}
         <div
           className="
           mt-14
@@ -77,51 +93,21 @@ const WorkSection = () => {
               className="
               group
               relative
-              isolate
               overflow-hidden
               rounded-2xl
               aspect-3/4
               block
               "
             >
-              {/* IMAGE */}
-              <img
-                src={work.img}
-                alt={work.alt}
-                className="
-                w-full h-full
-                object-cover
-                transition-transform duration-700 ease-out
-                min-[1300px]:group-hover:scale-110
-                "
-              />
+              {/* ================= IMAGE ================= */}
+              <WorkImage src={work.img} alt={work.alt} />
 
-              {/* ================================
-                 OVERLAY (TOKEN CONTROLLED)
-              ================================ */}
-              <div
-                className="
-                absolute inset-0
-                bg-overlay-strong
-                z-10
-
-                opacity-100
-                min-[1300px]:opacity-0
-                min-[1300px]:group-hover:opacity-100
-
-                transition-opacity duration-500
-                "
-              />
-
-              {/* ================================
-                 TITLE
-              ================================ */}
+              {/* ================= TITLE ================= */}
               <div
                 className="
                 absolute inset-0
                 flex items-end justify-center
                 pb-8
-                z-20
 
                 opacity-100
                 translate-y-0

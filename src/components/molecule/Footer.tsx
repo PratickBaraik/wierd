@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-
 import logo from "./logo.png";
 import fb from "./social/facebook.png";
 import ig from "./social/social.png";
@@ -12,47 +11,55 @@ const Footer = () => {
   ================================= */
 
   const navLinkClass =
-    "text-text-secondary text-sm md:text-base px-2 py-1 transition-all duration-300 hover:text-text-primary hover:-translate-y-[1px]";
+    "text-text-secondary text-sm md:text-base px-2 py-1 transition-all duration-300 hover:text-text-primary";
 
-  // ✅ Cleaner wrapper (no heavy padding / border / glass)
-  const socialWrapper =
-    "p-1.5 rounded-full transition-all duration-300 ease-out";
+  const socialWrapper = "p-2 rounded-full transition-all duration-300 ease-out";
 
-  // ✅ Refined icon behavior
   const socialIcon =
     "w-5 md:w-6 opacity-70 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110";
 
   return (
     <footer className="w-full bg-bg-secondary border-t border-border">
       {/* ================= TOP ================= */}
-      <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-12 items-center">
-        {/* BRAND + NAV */}
-        <div className="flex flex-col gap-8">
+      <div
+        className="
+          max-w-7xl mx-auto px-6 py-12
+          flex flex-col items-center text-center
+          md:grid md:grid-cols-[1fr_auto] md:text-left md:items-center
+          gap-10
+        "
+      >
+        {/* ================= LEFT (BRAND + NAV) ================= */}
+        <div className="flex flex-col items-center md:items-start gap-6">
           {/* BRAND */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 justify-center md:justify-start">
             <img
               src={logo}
               alt="Prakashit Kujur logo"
               className="
-                w-11 md:w-12
+                w-10 md:w-12
                 aspect-square
                 rounded-full
                 bg-white
                 p-1
                 shadow-md
-                transition-transform duration-300
-                hover:scale-[1.03]
               "
             />
 
-            <h1 className="text-text-primary font-semibold text-2xl md:text-3xl tracking-tight">
+            <h1 className="text-text-primary font-semibold text-xl md:text-3xl tracking-tight">
               Prakashit Kujur
             </h1>
           </div>
 
           {/* NAV */}
           <nav>
-            <ul className="flex flex-wrap gap-4 md:gap-6">
+            <ul
+              className="
+                flex flex-col md:flex-row
+                items-center md:items-start
+                gap-3 md:gap-6
+              "
+            >
               <li>
                 <Link to="/" className={navLinkClass}>
                   Home
@@ -82,8 +89,13 @@ const Footer = () => {
           </nav>
         </div>
 
-        {/* SOCIAL */}
-        <div className="flex items-center md:justify-end gap-4">
+        {/* ================= RIGHT (SOCIAL) ================= */}
+        <div
+          className="
+            flex items-center justify-center
+            gap-5
+          "
+        >
           {/* FACEBOOK */}
           <a
             href="https://facebook.com"

@@ -29,35 +29,30 @@ export default {
       },
 
       /* ================================
-         COLOR SYSTEM (FULL TOKENS)
+         COLOR SYSTEM (DESIGN TOKENS)
       ================================ */
       colors: {
-        /* Backgrounds */
         bg: {
           primary: "var(--bg-primary)",
           secondary: "var(--bg-secondary)",
           surface: "var(--bg-surface)",
         },
 
-        /* Text */
         text: {
           primary: "var(--text-primary)",
           secondary: "var(--text-secondary)",
           muted: "var(--text-muted)",
         },
 
-        /* Accent */
         accent: {
           DEFAULT: "var(--accent)",
           foreground: "var(--accent-foreground)",
         },
 
-        /* Borders */
         border: {
           DEFAULT: "var(--border)",
         },
 
-        /* Glass */
         glass: {
           DEFAULT: "var(--glass-bg)",
           border: "var(--glass-border)",
@@ -74,7 +69,7 @@ export default {
       },
 
       /* ================================
-         SHADOW SYSTEM (CINEMATIC)
+         SHADOW SYSTEM (DEPTH SCALE)
       ================================ */
       boxShadow: {
         soft: "0 4px 20px rgba(0,0,0,0.08)",
@@ -90,7 +85,7 @@ export default {
       },
 
       /* ================================
-         SPACING EXTENSIONS
+         SPACING SCALE EXTENSIONS
       ================================ */
       spacing: {
         18: "4.5rem",
@@ -99,25 +94,24 @@ export default {
       },
 
       /* ================================
-         ANIMATIONS
+         GENERIC ANIMATIONS ONLY
+         (Reusable across app)
       ================================ */
       keyframes: {
-        wave: {
-          "0%, 100%": { transform: "scaleY(0.3)" },
-          "25%": { transform: "scaleY(0.7)" },
-          "50%": { transform: "scaleY(1.8)" },
-          "75%": { transform: "scaleY(1.2)" },
-        },
-
         fadeIn: {
           "0%": { opacity: 0, transform: "translateY(10px)" },
           "100%": { opacity: 1, transform: "translateY(0)" },
         },
+
+        scaleIn: {
+          "0%": { opacity: 0, transform: "scale(0.95)" },
+          "100%": { opacity: 1, transform: "scale(1)" },
+        },
       },
 
       animation: {
-        wave: "wave 0.9s cubic-bezier(0.4, 0, 0.2, 1) infinite",
         fadeIn: "fadeIn 0.6s ease-out forwards",
+        scaleIn: "scaleIn 0.4s ease-out forwards",
       },
     },
   },

@@ -1,6 +1,9 @@
+import { useState } from "react";
 import selfPortrait from "./assets/selfPortriat.jpg";
 
 const IntroSection = () => {
+  const [loaded, setLoaded] = useState(false);
+
   return (
     <section className="w-full bg-primary">
       <div
@@ -23,11 +26,8 @@ const IntroSection = () => {
         py-[clamp(2.5rem,6vw,5rem)]
         "
       >
-        {/* ================================
-           TEXT SECTION
-        ================================ */}
+        {/* ================= TEXT SECTION ================= */}
         <div className="flex-1 max-w-2xl self-start">
-          {/* HEADING */}
           <h1
             className="
             font-semibold
@@ -40,7 +40,6 @@ const IntroSection = () => {
             Hey, I’m <span className="font-bold">Prakashit Kujur</span>
           </h1>
 
-          {/* SUBHEADING */}
           <h2
             className="
             mt-3
@@ -52,7 +51,6 @@ const IntroSection = () => {
             Videographer • Photographer • Visual Storyteller
           </h2>
 
-          {/* BODY PARAGRAPH 1 */}
           <p
             className="
             mt-6
@@ -67,7 +65,6 @@ const IntroSection = () => {
             the moment.
           </p>
 
-          {/* BODY PARAGRAPH 2 */}
           <p
             className="
             mt-4
@@ -83,27 +80,32 @@ const IntroSection = () => {
           </p>
         </div>
 
-        {/* ================================
-           IMAGE SECTION
-        ================================ */}
+        {/* ================= IMAGE SECTION ================= */}
         <div
           className="
           shrink-0
           w-[clamp(260px,35vw,520px)]
           sm:w-[clamp(220px,70vw,400px)]
           mt-10 md:mt-0
+          overflow-hidden
+          rounded-2xl
           "
         >
           <img
             src={selfPortrait}
             alt="Self portrait of Prakashit Kujur"
-            className="
-            w-full
-            h-auto
-            object-cover
-            rounded-2xl
-            shadow-xl
-            "
+            loading="lazy" /* ✅ browser-level lazy loading */
+            onLoad={() => setLoaded(true)}
+            className={`
+              w-full
+              h-auto
+              object-cover
+              shadow-xl
+
+              transition-all duration-1000 ease-out
+
+              ${loaded ? "opacity-100 scale-100" : "opacity-0 scale-105"}
+            `}
           />
         </div>
       </div>

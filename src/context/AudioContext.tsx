@@ -1,4 +1,5 @@
 import { createContext, useContext, useRef, useState } from "react";
+import AudioClip from "../../dist/music/background.mp3";
 
 type AudioContextType = {
   playing: boolean;
@@ -29,7 +30,7 @@ export const AudioProvider = ({ children }: { children: React.ReactNode }) => {
       {children}
 
       {/* global audio element */}
-      <audio ref={audioRef} src="/music/background.mp3" />
+      <audio ref={audioRef} src={AudioClip} />
     </AudioContext.Provider>
   );
 };

@@ -2,19 +2,14 @@ import React, { useState } from "react";
 import ContactImage from "./assets/selfPortrait.jpg";
 import MiniContact from "./assets/croppedPortrait.jpg";
 
-/* ================================
-   Types
-================================ */
+/* ================================ */
 type FormData = {
   name: string;
   email: string;
   message: string;
 };
 
-/* ================================
-   Styles (Reusable)
-================================ */
-
+/* ================================ */
 const inputClass = `
   w-full px-4 py-3
   bg-primary
@@ -36,16 +31,15 @@ const fieldWrapper = `
   flex flex-col items-center lg:items-start w-full
 `;
 
-/* ================================
-   Component
-================================ */
-
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     message: "",
   });
+
+  /* ================= IMAGE STATE ================= */
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   /* Handle Input */
   const handleChange = (
@@ -65,19 +59,13 @@ const Contact: React.FC = () => {
 
     const { name, email, message } = formData;
 
-    // ✅ Validation
     if (!name || !email || !message) {
       alert("Please fill all fields.");
       return;
     }
 
-    // 🎯 Subject (as requested)
     const subject = "✨📩 New Connection from Portfolio Website 🚀";
-
-    // ✅ Clean formatted body
     const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
-
-    // ⚠️ Replace with your actual email
     const recipient = "your-email@example.com";
 
     const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(
@@ -86,16 +74,11 @@ const Contact: React.FC = () => {
 
     try {
       window.location.href = mailtoLink;
-    } catch (error) {
+    } catch {
       alert("Unable to open mail client.");
     }
 
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      message: "",
-    });
+    setFormData({ name: "", email: "", message: "" });
   };
 
   return (
@@ -103,24 +86,44 @@ const Contact: React.FC = () => {
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 items-stretch">
           {/* ================= IMAGE ================= */}
-          <div className="w-full h-full">
+          <div className="w-full h-full overflow-hidden rounded-3xl">
+            {/* Skeleton */}
+            <div
+              className={`
+                absolute inset-0
+                bg-secondary animate-pulse
+                transition-opacity duration-700
+                ${imgLoaded ? "opacity-0" : "opacity-100"}
+              `}
+            />
+
             <picture>
               <source media="(min-width: 1024px)" srcSet={MiniContact} />
+
               <img
                 src={ContactImage}
                 alt="Contact"
-                className="
+                loading="lazy"
+                decoding="async"
+                onLoad={() => setImgLoaded(true)}
+                className={`
                   w-full h-full object-cover
-                  rounded-3xl
-                  shadow-medium
-                "
+                  rounded-3xl shadow-medium
+
+                  transition-all duration-700 ease-in-out
+
+                  ${
+                    imgLoaded
+                      ? "opacity-100 scale-100 blur-0"
+                      : "opacity-0 scale-105 blur-sm"
+                  }
+                `}
               />
             </picture>
           </div>
 
           {/* ================= CONTENT ================= */}
           <div className="flex flex-col gap-10 h-full justify-between items-center lg:items-start">
-            {/* TEXT */}
             <div className="text-center lg:text-left max-w-lg">
               <h2 className="text-3xl md:text-4xl font-bold text-primary tracking-tight">
                 Get in Touch
@@ -146,12 +149,10 @@ const Contact: React.FC = () => {
                 p-6 md:p-8
               "
             >
-              {/* NAME */}
               <div className={fieldWrapper}>
                 <label htmlFor="name" className={labelClass}>
                   Name
                 </label>
-
                 <input
                   id="name"
                   type="text"
@@ -164,12 +165,10 @@ const Contact: React.FC = () => {
                 />
               </div>
 
-              {/* EMAIL */}
               <div className={fieldWrapper}>
                 <label htmlFor="email" className={labelClass}>
                   Email
                 </label>
-
                 <input
                   id="email"
                   type="email"
@@ -182,12 +181,10 @@ const Contact: React.FC = () => {
                 />
               </div>
 
-              {/* MESSAGE */}
               <div className={fieldWrapper}>
                 <label htmlFor="message" className={labelClass}>
                   Message
                 </label>
-
                 <textarea
                   id="message"
                   name="message"
@@ -200,7 +197,6 @@ const Contact: React.FC = () => {
                 />
               </div>
 
-              {/* BUTTON */}
               <button
                 type="submit"
                 className="

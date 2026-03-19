@@ -7,12 +7,13 @@ interface ImageCardProps {
 
 const ImageCard: React.FC<ImageCardProps> = ({ src, alt }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
+
   const [isVisible, setIsVisible] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
   /**
-   * Intersection Observer:
-   * Lazy-load images only near viewport
+   * Intersection Observer
+   * - Increased rootMargin for earlier loading (better UX)
    */
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -22,7 +23,7 @@ const ImageCard: React.FC<ImageCardProps> = ({ src, alt }) => {
           observer.disconnect();
         }
       },
-      { rootMargin: "120px" },
+      { rootMargin: "200px" }, // 🔥 earlier load → smoother scroll
     );
 
     if (containerRef.current) observer.observe(containerRef.current);
@@ -42,24 +43,24 @@ const ImageCard: React.FC<ImageCardProps> = ({ src, alt }) => {
 
         bg-surface
         border border-border
-        shadow-soft
-        hover:shadow-medium
+        shadow-soft hover:shadow-medium
 
-        transition-all duration-300
+        transition-shadow duration-300
       "
     >
-      {/* Skeleton */}
+      {/* ================= SKELETON ================= */}
       <div
         className={`
           absolute inset-0
-          transition-opacity duration-500
-          ${isLoaded ? "opacity-0" : "opacity-100"}
           bg-secondary
           animate-pulse
+
+          transition-opacity duration-700 ease-out
+          ${isLoaded ? "opacity-0" : "opacity-100"}
         `}
       />
 
-      {/* Image */}
+      {/* ================= IMAGE ================= */}
       {isVisible && (
         <img
           src={src}
@@ -69,8 +70,16 @@ const ImageCard: React.FC<ImageCardProps> = ({ src, alt }) => {
           onLoad={() => setIsLoaded(true)}
           className={`
             w-full h-full object-cover
-            transition-all duration-500 ease-out
-            ${isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-105"}
+
+            /* smooth entry */
+            transition-all duration-700 ease-in-out
+
+            ${
+              isLoaded
+                ? "opacity-100 scale-100 blur-0"
+                : "opacity-0 scale-105 blur-sm"
+            }
+
             hover:scale-105
             will-change-transform
           `}

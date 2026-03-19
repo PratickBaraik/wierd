@@ -1,14 +1,6 @@
 import { useEffect, useState } from "react";
 import TopArrow from "./topArrow.png";
 
-/**
- * ScrollToTop Button (Refined)
- * - Clean styling (no heavy gradients)
- * - Smooth motion system
- * - Lightweight scroll listener
- * - Consistent with design system
- */
-
 const ScrollToTop = ({ showAfter = 800 }) => {
   const [visible, setVisible] = useState(false);
 
@@ -26,7 +18,6 @@ const ScrollToTop = ({ showAfter = 800 }) => {
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, [showAfter]);
 
@@ -42,6 +33,8 @@ const ScrollToTop = ({ showAfter = 800 }) => {
       onClick={scrollToTop}
       aria-label="Scroll to top"
       className={`
+        group                         /* ✅ FIX: enable group-hover */
+
         fixed z-50
         bottom-6 right-6
         md:bottom-10 md:right-10
@@ -71,8 +64,13 @@ const ScrollToTop = ({ showAfter = 800 }) => {
         alt="Scroll to top"
         className={`
           w-4 h-4 md:w-5 md:h-5
-          transition-transform duration-300
+
+          transition-all duration-300
+
           group-hover:-translate-y-0.5
+
+          /* ================= THEME FIX ================= */
+          dark:invert                 /* invert in dark mode */
         `}
       />
     </button>

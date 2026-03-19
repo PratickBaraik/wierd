@@ -1,17 +1,22 @@
+import { useEffect, useState } from "react";
+// import { Links } from "react-router-dom";
 import contactBg from "./assets/contactBackground.jpeg";
 
 const ContactSection = () => {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = contactBg;
+    img.onload = () => setLoaded(true);
+  }, []);
+
   return (
     <section
-      style={{ backgroundImage: `url(${contactBg})` }}
       className="
       relative
       min-h-screen
       w-full
-
-      bg-cover
-      bg-center
-      bg-no-repeat
 
       flex
       items-center
@@ -21,14 +26,26 @@ const ContactSection = () => {
       overflow-hidden
       "
     >
-      {/* ================================
-         FULL OVERLAY (GLOBAL CONTRAST)
-      ================================ */}
+      {/* ================= BACKGROUND IMAGE ================= */}
+      <div
+        style={{ backgroundImage: `url(${contactBg})` }}
+        className={`
+          absolute inset-0
+
+          bg-cover
+          bg-center
+          bg-no-repeat
+
+          transition-all duration-1200 ease-out
+
+          ${loaded ? "opacity-100 scale-100" : "opacity-0 scale-105"}
+        `}
+      />
+
+      {/* ================= OVERLAY ================= */}
       <div className="absolute inset-0 bg-overlay-strong" />
 
-      {/* ================================
-         LIGHT FOCUS
-      ================================ */}
+      {/* ================= LIGHT FOCUS ================= */}
       <div
         className="
         absolute
@@ -43,9 +60,7 @@ const ContactSection = () => {
         "
       />
 
-      {/* ================================
-         CONTENT (FULL CENTERED)
-      ================================ */}
+      {/* ================= CONTENT ================= */}
       <div
         className="
         relative z-10
@@ -67,9 +82,7 @@ const ContactSection = () => {
           className="
           text-text-primary
           font-semibold
-
           text-[clamp(2.5rem,4vw+1rem,4.2rem)]
-
           leading-[1.1]
           tracking-tight
           "
@@ -81,9 +94,7 @@ const ContactSection = () => {
         <p
           className="
           text-text-secondary
-
           text-[clamp(1rem,1vw+0.8rem,1.25rem)]
-
           leading-relaxed
           max-w-162.5
           "
