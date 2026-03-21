@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "./logo.png";
+import logo from "/new_logo.png";
 import fb from "./social/facebook.png";
 import ig from "./social/social.png";
 import yt from "./social/youtube.png";

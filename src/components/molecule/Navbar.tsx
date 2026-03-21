@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "./logo.png";
+import logo from "/new_logo.png";
 
 type NavItem = {
   label: string;
