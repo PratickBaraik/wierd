@@ -7,7 +7,7 @@ import li from "./social/linkedin.png";
 
 const Footer = () => {
   /* ================================
-     Reusable Styles
+    Reusable Styles
   ================================= */
 
   const navLinkClass =

@@ -89,38 +89,38 @@ const LightSection: React.FC = () => {
               {light.description}
             </p>
 
-            <div>
-              <button
-                className="
-    mt-2
-    inline-flex items-center justify-center
+            {/* <div> */}
+            {/* <button */}
+            {/* className=" */}
+            {/* mt-2 */}
+            {/* inline-flex items-center justify-center */}
 
-    px-6 py-3
-    rounded-xl
+            {/* px-6 py-3 */}
+            {/* rounded-xl */}
 
-    /* BASE (light mode) */
-    bg-bg-secondary
-    text-text-primary
-    border border-border
+            {/* /* BASE (light mode) */}
+            {/* bg-bg-secondary */}
+            {/* text-text-primary */}
+            {/* border border-border */}
 
-    /* DEPTH */
-    shadow-soft
-    hover:shadow-medium
+            {/* /* DEPTH */}
+            {/* shadow-soft */}
+            {/* hover:shadow-medium */}
 
-    /* INTERACTION */
-    transition-all duration-300
-    hover:-translate-y-0.5
-    active:scale-95
+            {/* /* INTERACTION */}
+            {/* transition-all duration-300 */}
+            {/* hover:-translate-y-0.5 */}
+            {/* active:scale-95 */}
 
-    /* DARK MODE ENHANCEMENT */
-    dark:bg-white/5
-    dark:border-white/10
-    dark:hover:bg-white/10
-  "
-              >
-                Know More
-              </button>
-            </div>
+            {/* /* DARK MODE ENHANCEMENT */}
+            {/* dark:bg-white/5 */}
+            {/* dark:border-white/10 */}
+            {/* dark:hover:bg-white/10 */}
+            {/* " */}
+            {/* > */}
+            {/* Know More */}
+            {/* </button> */}
+            {/* </div> */}
           </div>
         </div>
       </div>
