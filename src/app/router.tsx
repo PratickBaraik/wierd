@@ -9,6 +9,7 @@ import NotFound from "../pages/notFound/NotFound";
 import DroneProject from "../pages/project/droneProject/DroneMain";
 import PhotoProject from "../pages/project/photoProject/PhotoMain";
 import CineProject from "../pages/project/cineProject/CineMain";
+import ClubMain from "../pages/club/ClubMain";
 
 export default function Router() {
   return (
@@ -21,6 +22,7 @@ export default function Router() {
       <Route path="/drone" element={<DroneProject />} />
       <Route path="/photo" element={<PhotoProject />} />
       <Route path="/cine" element={<CineProject />} />
+      <Route path="/club" element={<ClubMain />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
